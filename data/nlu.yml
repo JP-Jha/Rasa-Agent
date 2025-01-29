@@ -1,0 +1,44 @@
+version: "3.1"
+nlu:
+  - intent: play_spotify
+    examples: |
+      - play music
+      - play a song
+      - play [song_name](song)
+      - play [music_name](song)
+      - play [artist_name](artist)
+      - play [singer_name](artist)
+      - play playlist [playlist_name](playlist)
+      - play [song_name](song) by [artist_name](artist)
+      - play a [playlist_name](playlist)
+      - play the song [Shape of You](song)
+      - play [Blinding Lights](song) by [The Weeknd](artist)
+      - play a [rock](playlist) playlist
+      - play a [chill](playlist) playlist
+
+  - intent: send_whatsapp_message
+    examples: |
+      - send a message to [John](name)
+      - send a message to [Jay](name)
+      - send message [Hello](message) to [Alice](name)
+      - say hello to [Jay](name) on WhatsApp
+      - WhatsApp message to [Bob](name)
+      - call [Sam](name)
+      - send [Hello](message) to [Jane](name)
+      - send a [urgent](message) message to [Tom](name)
+      - send a voice message to [Alice](name)
+      - tell [Paul](name) that I’ll be late
+
+  - intent: greet
+    examples: |
+      - Hi
+      - Hello
+      - How are you?
+      - Hey
+      - Good morning
+      - Good evening
+      - What's up?
+      - How's it going?
+      - Yo
+      - Hi there
+

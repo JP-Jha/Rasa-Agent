@@ -1,0 +1,6 @@
+twilio
+spotipy
+sqlalchemy<2.0
+rasa-sdk
+requests
+rasa

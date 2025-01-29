@@ -1,0 +1,127 @@
+version: "3.1"
+
+intents:
+  - play_spotify
+  - send_whatsapp_message
+  - greet
+
+entities:
+  - song_name
+  - music_name
+  - artist_name
+  - playlist_name
+  - name
+  - message
+
+slots:
+  song_name:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_entity
+        entity: song_name
+  music_name:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_entity
+        entity: music_name
+  artist_name:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_entity
+        entity: artist_name
+  playlist_name:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_entity
+        entity: playlist_name
+  name:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_entity
+        entity: name
+  message:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_entity
+        entity: message
+
+responses:
+  utter_greet:
+    - text: "Hi! How can I assist you today?"
+  utter_goodbye:
+    - text: "Goodbye! Have a great day."
+  utter_send_message:
+    - text: "Sending your message..."
+  utter_play_song:
+    - text: "Playing the song {song_name} now."
+  utter_play_artist:
+    - text: "Now playing music by {artist_name}."
+  utter_play_playlist:
+    - text: "Playing the {playlist_name} playlist."
+  utter_ask_song:
+    - text: "Which song would you like to play?"
+  utter_ask_artist:
+    - text: "Which artist would you like to hear?"
+  utter_ask_playlist:
+    - text: "Which playlist would you like to play?"
+  utter_ask_message:
+    - text: "What message would you like to send?"
+  utter_ask_name:
+    - text: "Who do you want to send the message to?"
+
+actions:
+  - action_play_spotify
+  - action_send_whatsapp_message
+  - action_listen
+  - action_restart
+  - action_session_start
+  - action_default_fallback
+  - action_deactivate_loop
+  - action_revert_fallback_events
+  - action_default_ask_affirmation
+  - action_default_ask_rephrase
+  - action_two_stage_fallback
+  - action_unlikely_intent
+  - action_back
+  - action_extract_slots
+
+
+  # Add any other actions
+# intents:
+#   - greet
+#   - goodbye
+#   - affirm
+#   - deny
+#   - mood_great
+#   - mood_unhappy
+#   - bot_challenge
+
+# responses:
+#   utter_greet:
+#   - text: "Hey! How are you?"
+
+#   utter_cheer_up:
+#   - text: "Here is something to cheer you up:"
+#     image: "https://i.imgur.com/nGF1K8f.jpg"
+
+#   utter_did_that_help:
+#   - text: "Did that help you?"
+
+#   utter_happy:
+#   - text: "Great, carry on!"
+
+#   utter_goodbye:
+#   - text: "Bye"
+
+#   utter_iamabot:
+#   - text: "I am a bot, powered by Rasa."
+
+# session_config:
+#   session_expiration_time: 60
+#   carry_over_slots_to_new_session: true

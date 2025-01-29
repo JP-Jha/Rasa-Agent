@@ -1,0 +1,167 @@
+
+# version: '3.8'
+
+# services:
+#   rasa:
+#     image: rasa/rasa:latest
+#     command: run --enable-api --cors "*"
+#     ports:
+#       - "5005:5005"
+#     volumes:
+#       - ./app:/app
+#     environment:
+#       - RASA_MODEL=/app/models
+#     depends_on:
+#       - rasa-action-server
+
+#   rasa-action-server:
+#     build:
+#       context: .
+#       dockerfile: Dockerfile
+#     command: rasa run actions  # Corrected: command for the action server
+#     ports:
+#       - "5055:5055"
+#     volumes:
+#       - ./app:/app
+#     environment:
+#       - RASA_ACTION_SERVER_PORT=5055
+
+# version: "3.8"  # Make sure you're using an appropriate version if needed
+
+# services:
+#   rasa:
+#     image: rasa/rasa:latest
+#     command: run --enable-api --cors "*"
+#     ports:
+#       - "5005:5005"
+#     volumes:
+#       - ./metaphone_rasa:/app  # Mount the current directory to the container
+#     environment:
+#       - RASA_MODEL=/app/models
+#     depends_on:
+#       - rasa-action-server
+
+#   rasa-action-server:
+#     build:
+#       context: .  # Current directory
+#       dockerfile: Dockerfile
+#     command: rasa run actions  # Run the action server
+#     ports:
+#       - "5055:5055"
+#     volumes:
+#       - ./metaphone_rasa:/app  # Mount the current directory to the container
+
+# version: "3.8"
+
+# services:
+#   rasa:
+#     image: rasa/rasa:latest
+#     command: run --enable-api --cors "*"  # Main Rasa server
+#     ports:
+#       - "5005:5005"
+#     volumes:
+#       - ./metaphone_rasa:/app  # Make sure this points to your project folder
+#     environment:
+#       - RASA_MODEL=/app/models
+#     depends_on:
+#       - rasa-action-server
+
+#   rasa-action-server:
+#     build: .  # Use the Dockerfile in the current directory
+#     command: rasa run actions --cors "*"  # Runs the action server
+#     ports:
+#       - "5055:5055"
+#     volumes:
+#       - ./metaphone_rasa:/app  # Mount the entire project folder
+#     environment:
+#       - RASA_ACTION_SERVER_PORT=5055
+
+
+# services:
+#   rasa:
+#     image: rasa/rasa:latest
+#     command: run --enable-api --cors "*"  # Main Rasa server
+#     ports:
+#       - "5005:5005"
+#     volumes:
+#       - ./metaphone_rasa:/app/models # Mount the project folder to the Rasa container
+
+#     environment:
+#       - RASA_MODEL=/app/models  # Ensure Rasa can access the models
+#     depends_on:
+#       - rasa-action-server  # Ensure the action server is ready
+
+#   rasa-action-server:
+#     build: .  # Use the Dockerfile in the current directory
+#     command: rasa run actions --cors "*"  # Runs the action server
+#     ports:
+#       - "5055:5055"
+#     volumes:
+#       # - ./metaphone_rasa/actions:/app/actions  # Mount only the actions directory
+#       # - ./metaphone_rasa/models:/app/models  # Mount only the models directory
+#       - ./metaphone_rasa:/app
+#     environment:
+#       - RASA_ACTION_SERVER_PORT=5055
+
+
+# services:
+#   rasa:
+#     image: rasa/rasa:latest
+#     command: run --enable-api --cors "*"  # Main Rasa server
+#     ports:
+#       - "5005:5005"
+#     volumes:
+#       - ./metaphone_rasa:/app/models # Mount the project folder to the Rasa container
+
+#     environment:
+#       - RASA_MODEL=/app/models  # Ensure Rasa can access the models
+#     depends_on:
+#       - rasa-action-server  # Ensure the action server is ready
+
+#   rasa-action-server:
+#     build: .  # Use the Dockerfile in the current directory
+#     command: rasa run actions --cors "*"  # Runs the action server
+#     ports:
+#       - "5055:5055"
+#     volumes:
+#       # - ./metaphone_rasa/actions:/app/actions  # Mount only the actions directory
+#       # - ./metaphone_rasa/models:/app/models  # Mount only the models directory
+#       - ./metaphone_rasa:/app
+#     environment:
+#       - RASA_ACTION_SERVER_PORT=5055
+
+
+# version: '3.9'
+services:
+  rasa:
+    image: rasa/rasa:3.5.0
+    ports:
+      - "5005:5005"
+    volumes:
+      - ./models:/app/models
+      - ./config.yml:/app/config.yml
+      - ./data:/app/data
+      - ./domain.yml:/app/domain.yml
+      - ./credentials.yml:/app/credentials.yml
+      - ./endpoints.yml:/app/endpoints.yml
+    command:
+      - run
+      - --enable-api
+      - --cors
+      - "*"
+      - --debug
+
+  action_server:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "5055:5055"
+    volumes:
+      - ./actions:/app/actions
+    environment:
+      SPOTIPY_CLIENT_ID: "3fb1846897864809ac9694b20ae73d8b"
+      SPOTIPY_CLIENT_SECRET: "8e64d0bf253449d8b655537d01fd02b3"
+      SPOTIPY_REDIRECT_URI: "http://localhost:3000"
+      TWILIO_ACCOUNT_SID: "ACb4d775453eb32f7d7cdc218c84fc3eaa"
+      TWILIO_AUTH_TOKEN: "18c3bb92780c7f9b88729ac17373f9b1"

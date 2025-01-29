@@ -1,0 +1,21 @@
+version: "3.1"
+stories:
+  - story: Play Spotify
+    steps:
+      - intent: play_spotify
+      - action: action_play_spotify
+
+  - story: Send WhatsApp message
+    steps:
+      - intent: send_whatsapp_message
+      - action: action_send_whatsapp_message
+
+  - story: Greet User
+    steps:
+      - intent: greet
+      - action: utter_greet
+      
+  - story: "Goodbye story"
+    steps:
+      - intent: goodbye
+      - action: utter_goodbye
